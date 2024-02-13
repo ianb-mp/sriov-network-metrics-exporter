@@ -10,6 +10,8 @@ data:
         version: 1.9.11
       - name: mlx5_core
         version: 5.15.0-53-generic
+      - name: i40e
+        version: 5.14.0-362.8.1.el9_3.x86_64
 ---
 apiVersion: apps/v1
 kind: DaemonSet
@@ -39,8 +41,10 @@ spec:
         - --path.cpucheckpoint=/host/cpu_manager_state
         - --path.kubeletsocket=/host/kubelet.sock
         - --collector.kubepoddevice=true
-        - --collector.vfstatspriority=sysfs,netlink
-        image: localhost:5000/sriov-metrics-exporter
+        #- --collector.vfstatspriority=sysfs,netlink
+        - --collector.vfstatspriority=netlink
+        #image: localhost:5000/sriov-metrics-exporter
+        image: ghcr.io/megaport/ianb-mp/sriov-network-metrics-exporter:latest
         imagePullPolicy: Always 
         name: sriov-metrics-exporter
         resources:
@@ -88,7 +92,8 @@ spec:
           type: "Socket"
         name: kubeletsocket
       - hostPath:
-          path: /sys/fs/cgroup/cpuset/kubepods.slice/
+          #path: /sys/fs/cgroup/cpuset/kubepods.slice/
+          path: /sys/fs/cgroup/kubepods.slice/
           type: "Directory"
         name: kubecgroup
       - hostPath:

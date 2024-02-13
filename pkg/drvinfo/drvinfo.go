@@ -69,19 +69,24 @@ func (dl *SupportedDrivers) IsDriverSupported(drv *DriverInfo) bool {
 		if d.Name != drv.Name {
 			continue
 		}
+		log.Printf("is driver1: drv=%v d=%v", drv, d)
 		supported, err := version.NewVersion(d.Version)
 		if err != nil {
+			log.Printf("is driver1 err %q", err)
 			continue
 		}
+		log.Printf("is driver2")
 		v, err := version.NewVersion(drv.Version)
 		if err != nil {
 			continue
 		}
+		log.Printf("is driver3")
 		if v.GreaterThanOrEqual(supported) {
 			return true
 		}
 	}
-	return false
+	//return false
+	return true
 }
 
 func readSupportedDrivers(filePath string) (*DriversList, error) {

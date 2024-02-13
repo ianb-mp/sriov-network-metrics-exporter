@@ -8,7 +8,7 @@ require (
 	github.com/onsi/gomega v1.24.0
 	github.com/prometheus/client_golang v1.12.1
 	github.com/prometheus/client_model v0.2.0
-	github.com/safchain/ethtool v0.2.0
+	github.com/safchain/ethtool v0.3.0
 	github.com/vishvananda/netlink v1.1.1-0.20201029203352-d40f9887b852
 	golang.org/x/time v0.0.0-20220210224613-90d013bbcef8
 	google.golang.org/grpc v1.56.3

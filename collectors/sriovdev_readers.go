@@ -55,6 +55,7 @@ func getStatsReader(pf string, priority []string) sriovStatReader {
 				return nil
 			}
 
+			log.Printf("driver info: %v", info)
 			if supportedDrivers.IsDriverSupported(info) {
 				log.Printf("%s - using netlink collector", pf)
 				return netlinkReader{vfstats.VfStats(pf)}

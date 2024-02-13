@@ -187,6 +187,7 @@ func getNumaNodes(devs []string) map[string]string {
 func vfList(dev string) (vfsPCIAddr, error) {
 	vfList := make(vfsPCIAddr, 0)
 
+	log.Printf("vfList devfs %v dev %v", devfs, dev)
 	vfs, err := fs.Glob(devfs, filepath.Join(dev, "virtfn*"))
 	if err != nil {
 		log.Printf("Invalid pattern\n%v", err) // unreachable code
